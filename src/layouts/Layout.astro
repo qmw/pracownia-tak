@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+interface Props { title?: string; description?: string; }
+const {
+  title = "Pracownia TAK — wedding planner Warszawa · organizacja wesel i eventów",
+  description = "Pracownia TAK — butikowa agencja wedding planningu i eventów z Warszawy (Mokotów). Kompleksowa organizacja wesel, koordynacja dnia ślubu, wesela plenerowe i za granicą, eventy firmowe. Od 2016 roku.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Cousine:wght@400;700&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="antialiased">
+    <!-- PASEK DEMO U GÓRY (obowiązkowy) -->
+    <a id="promo-bar" href="https://100strona.pl" target="_blank" rel="noopener">Strona pokazowa od <strong>100strona.pl</strong> · 100 zł/mc</a>
+    <slot />
+    <script>
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      const nav = document.getElementById("nav");
+      if (nav) {
+        const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+        onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+      }
+      const burger = document.getElementById("burger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      burger?.addEventListener("click", () => mobileMenu?.classList.toggle("hidden"));
+      mobileMenu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => mobileMenu?.classList.add("hidden")));
+    </script>
+  </body>
+</html>

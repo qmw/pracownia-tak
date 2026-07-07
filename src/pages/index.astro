@@ -1,0 +1,666 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const navLinks = [
+  { href: "#o-pracowni", label: "O pracowni" },
+  { href: "#program", label: "Program" },
+  { href: "#proces", label: "Proces" },
+  { href: "#pakiety", label: "Pakiety" },
+  { href: "#realizacje", label: "Realizacje" },
+  { href: "#kontakt", label: "Kontakt" },
+];
+
+const uslugi = [
+  {
+    nr: "I.",
+    title: "Organizacja kompleksowa",
+    desc: "Prowadzimy Was od pierwszej rozmowy do ostatniego tańca — koncepcja, budżet, podwykonawcy, harmonogram i pełna opieka nad każdym detalem.",
+    note: "12–18 miesięcy współpracy",
+  },
+  {
+    nr: "II.",
+    title: "Koordynacja dnia ślubu",
+    desc: "Zaplanowaliście wszystko sami? Przejmujemy stery na ostatniej prostej, żebyście w dniu Ś. byli tylko i aż — parą młodą.",
+    note: "od 4 tygodni przed datą",
+  },
+  {
+    nr: "III.",
+    title: "Wesela plenerowe i za granicą",
+    desc: "Stodoły, ogrody, winnice, klify Santorini i toskańskie wzgórza. Logistyka pleneru i destination wedding to nasza specjalność.",
+    note: "Polska · Europa · świat",
+  },
+  {
+    nr: "IV.",
+    title: "Eventy firmowe",
+    desc: "Gale, jubileusze, premiery i wigilie firmowe z tą samą dbałością o estetykę, z jakiej znają nas pary młode.",
+    note: "od 30 do 500 gości",
+  },
+  {
+    nr: "V.",
+    title: "Przyjęcia prywatne",
+    desc: "Urodziny, rocznice, chrzciny, zaręczyny w gronie najbliższych — kameralne, ale wyreżyserowane co do minuty.",
+    note: "kameralnie, od 20 gości",
+  },
+];
+
+const proces = [
+  {
+    nr: "01",
+    title: "Konsultacja",
+    desc: "Spotykamy się na kawie na Mokotowie albo online. Słuchamy Waszej historii, poznajemy oczekiwania i marzenia — te wypowiedziane i te między wierszami.",
+  },
+  {
+    nr: "02",
+    title: "Koncepcja i moodboard",
+    desc: "Przekładamy rozmowę na obrazy: paletę, kwiaty, światło, papeterię. Dostajecie moodboard, który staje się konstytucją Waszego dnia.",
+  },
+  {
+    nr: "03",
+    title: "Budżet i podwykonawcy",
+    desc: "Pilnujemy każdej złotówki i dobieramy sprawdzonych ludzi — od florystki po zespół. Negocjujemy stawki i czytamy umowy drobnym drukiem.",
+  },
+  {
+    nr: "04",
+    title: "Logistyka",
+    desc: "Harmonogram co do kwadransa, plan awaryjny na deszcz, transport gości, próby, odprawy. Nuda? Dla nas — poezja arkuszy kalkulacyjnych.",
+  },
+  {
+    nr: "05",
+    title: "Dzień Ś.",
+    desc: "Jesteśmy na miejscu od świtu do ostatniego gościa. Wy mówicie TAK — my zajmujemy się całą resztą.",
+  },
+];
+
+const pakiety = [
+  {
+    name: "Koordynacja dnia",
+    price: "od 3 900 zł",
+    for: "dla par, które zaplanowały wszystko same",
+    items: [
+      "przejęcie kontaktu z podwykonawcami",
+      "scenariusz dnia co do kwadransa",
+      "obecność 2 koordynatorek do końca",
+      "zestaw ratunkowy (igła, plastry, nerwy ze stali)",
+    ],
+    featured: false,
+  },
+  {
+    name: "Organizacja kompleksowa",
+    price: "od 14 000 zł",
+    for: "dla par, które chcą po prostu powiedzieć TAK",
+    items: [
+      "koncepcja, moodboard i scenografia",
+      "budżet, podwykonawcy, negocjacje umów",
+      "pełna logistyka i harmonogram",
+      "koordynacja dnia Ś. w cenie",
+      "nielimitowany kontakt przez całą drogę",
+    ],
+    featured: true,
+  },
+  {
+    name: "Organizacja częściowa",
+    price: "od 7 500 zł",
+    for: "dla par, które utknęły w połowie drogi",
+    items: [
+      "audyt dotychczasowych planów",
+      "domknięcie brakujących podwykonawców",
+      "spójna koncepcja estetyczna",
+      "koordynacja dnia ślubu w cenie",
+    ],
+    featured: false,
+  },
+];
+
+const realizacje = [
+  {
+    img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+    alt: "Para młoda podczas pleneru ślubnego",
+    place: "Pałac w Jabłonnie",
+    meta: "120 gości · sierpień 2025",
+    ratio: "aspect-[3/4]",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80",
+    alt: "Stół weselny w plenerze przy długim świetle",
+    place: "Wesele plenerowe, Kazimierz Dolny",
+    meta: "80 gości · czerwiec 2025",
+    ratio: "aspect-[4/3]",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80",
+    alt: "Para młoda trzymająca się za ręce z bukietem",
+    place: "Ślub na Santorini",
+    meta: "24 gości · wrzesień 2024",
+    ratio: "aspect-[3/4]",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
+    alt: "Elegancka zastawa stołowa na przyjęciu",
+    place: "Gala firmowa, Hotel Bristol",
+    meta: "200 gości · grudzień 2024",
+    ratio: "aspect-square",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=80",
+    alt: "Przyjęcie weselne pod namiotem w ogrodzie",
+    place: "Przyjęcie w ogrodzie, Konstancin",
+    meta: "45 gości · maj 2025",
+    ratio: "aspect-[4/3]",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1200&q=80",
+    alt: "Para młoda pod welonem o zachodzie słońca",
+    place: "Winnica pod Zieloną Górą",
+    meta: "90 gości · wrzesień 2025",
+    ratio: "aspect-[3/4]",
+  },
+];
+
+const opinie = [
+  {
+    quote: "Julia i Helena wiedziały, czego chcemy, zanim same to wiedziałyśmy. W dniu ślubu nie sprawdziłyśmy telefonu ani razu — pierwszy raz od zaręczyn.",
+    who: "Marta i Ola",
+    where: "Pałac w Jabłonnie, 2025",
+  },
+  {
+    quote: "Wesele w winnicy, 90 gości, burza godzinę przed ceremonią. Nikt z gości do dziś nie wie, że plan B w ogóle istniał. To chyba najlepsza rekomendacja.",
+    who: "Karolina i Bartek",
+    where: "winnica pod Zieloną Górą, 2025",
+  },
+  {
+    quote: "Mieszkamy w Londynie, ślub braliśmy na Santorini, a całość ogarnęła pracownia z Mokotowa. Trzy strefy czasowe, zero stresu.",
+    who: "Aleksandra i Michał",
+    where: "Santorini, 2024",
+  },
+  {
+    quote: "Budżet się spiął co do złotówki, a wyglądało, jakby kosztowało dwa razy tyle. Mama płakała, teściowa też — z zachwytu.",
+    who: "Zofia i Jan",
+    where: "Kazimierz Dolny, 2025",
+  },
+];
+
+const faq = [
+  {
+    q: "Kiedy najlepiej się do Was odezwać?",
+    a: "Przy organizacji kompleksowej idealnie 12–18 miesięcy przed planowaną datą — najlepsze miejsca i podwykonawcy rezerwują się z dużym wyprzedzeniem. Koordynację dnia ślubu przyjmujemy nawet na 4–6 tygodni przed. Ale napiszcie zawsze: kalendarz bywa łaskawy.",
+  },
+  {
+    q: "Czy działacie tylko w Warszawie?",
+    a: "Nie. Baza to Mokotów, ale organizujemy śluby i eventy w całej Polsce oraz za granicą — mamy na koncie realizacje m.in. we Włoszech, Grecji, Portugalii i Gruzji. Dojazd i logistykę wyceniamy indywidualnie.",
+  },
+  {
+    q: "Ile to naprawdę kosztuje?",
+    a: "Koordynacja dnia od 3 900 zł, organizacja częściowa od 7 500 zł, kompleksowa od 14 000 zł. Każdą współpracę wyceniamy indywidualnie po pierwszej konsultacji — zależy od skali, miejsca i zakresu. Konsultacja jest zawsze bezpłatna i do niczego nie zobowiązuje.",
+  },
+  {
+    q: "Czy zajmiecie się też małym przyjęciem?",
+    a: "Z przyjemnością. Kameralne śluby na 20–40 osób, rocznice i przyjęcia prywatne to często nasze ulubione realizacje — mniejsza skala pozwala dopieścić detale, których nikt się nie spodziewa.",
+  },
+];
+---
+
+<Layout>
+  <!-- ═════════ NAV ═════════ -->
+  <nav id="nav" class="fixed left-0 right-0 z-50 transition-all duration-300">
+    <div class="mx-auto flex max-w-350 items-center justify-between px-5 py-4 md:px-10">
+      <a href="#top" class="font-serif text-2xl leading-none tracking-tight">
+        Pracownia <em class="text-blush not-italic font-serif italic font-semibold">TAK.</em>
+      </a>
+      <div class="hidden items-center gap-7 lg:flex">
+        {navLinks.map((l) => (
+          <a href={l.href} class="label text-ink/70 transition-colors hover:text-blush">{l.label}</a>
+        ))}
+        <a href="#kontakt" class="label border border-ink px-4 py-2 transition-colors hover:border-blush hover:bg-blush hover:text-ivory">Napisz do nas</a>
+      </div>
+      <button id="burger" aria-label="Otwórz menu" class="flex flex-col gap-1.5 p-2 lg:hidden">
+        <span class="block h-px w-7 bg-ink"></span>
+        <span class="ml-2 block h-px w-5 bg-ink"></span>
+        <span class="block h-px w-7 bg-ink"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═════════ MENU MOBILNE ═════════ -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 hidden bg-ivory pt-28">
+    <div class="flex h-full flex-col justify-between px-7 pb-10">
+      <div class="flex flex-col gap-1">
+        {navLinks.map((l, i) => (
+          <a href={l.href} class="group flex items-baseline gap-4 border-b border-ink/10 py-4">
+            <span class="label text-gold">{String(i + 1).padStart(2, "0")}</span>
+            <span class="font-serif text-4xl italic leading-none transition-colors group-hover:text-blush">{l.label}</span>
+          </a>
+        ))}
+      </div>
+      <div class="flex items-end justify-between">
+        <p class="label text-ink/50">Warszawa · Mokotów<br />od 2016</p>
+        <p class="font-serif text-6xl italic leading-none text-blush">TAK.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════ HERO ═════════ -->
+  <header id="top" class="relative bg-ivory pt-36 md:pt-44">
+    <div class="relative mx-auto max-w-350 px-5 md:px-10">
+      <!-- podpisy mono jak w programie ceremonii -->
+      <div class="mb-8 flex flex-wrap items-baseline justify-between gap-3">
+        <p class="label text-ink/60">Wedding planning &amp; eventy — Warszawa</p>
+        <p class="label hidden text-ink/60 md:block">N° 01 — zaproszenie</p>
+        <p class="label text-gold">od 2016 · cała Polska i za granicą</p>
+      </div>
+      <div class="hairline"></div>
+
+      <div class="relative">
+        <!-- zdjęcie: asymetrycznie, z prawej, POD typografią (z-0) -->
+        <div class="photo absolute right-0 top-10 z-0 hidden aspect-[3/4] w-[42%] md:block lg:w-[38%]">
+          <img
+            src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1200&q=80"
+            alt="Roześmiana para młoda w dniu ślubu"
+            width="900" height="1200" loading="eager"
+          />
+        </div>
+
+        <!-- ogromna kursywa NA zdjęciu (z-10) -->
+        <div class="relative z-10 pt-10 md:pt-20">
+          <h1 class="font-serif font-medium leading-[0.92] tracking-tight">
+            <span class="block text-[13vw] md:text-[9vw]">Powiedz</span>
+            <span class="mt-1 block pl-[8vw] text-[24vw] italic text-blush md:pl-[16vw] md:text-[15vw]">TAK<span class="text-gold">.</span></span>
+            <span class="block max-w-4xl pt-4 text-[6.5vw] leading-[1.05] md:text-[3.4vw]">resztą zajmiemy się&nbsp;<em class="italic text-sage">my</em></span>
+          </h1>
+        </div>
+
+        <!-- zdjęcie mobilne pod nagłówkiem -->
+        <div class="photo relative z-0 mt-8 aspect-[4/5] w-full md:hidden">
+          <img
+            src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=900&q=80"
+            alt="Roześmiana para młoda w dniu ślubu"
+            width="900" height="1125" loading="eager"
+          />
+        </div>
+
+        <!-- lead + CTA, dosunięte do lewej, poniżej zdjęcia -->
+        <div class="relative z-10 mt-10 max-w-md md:mt-16">
+          <div class="hairline-gold mb-6 w-16"></div>
+          <p class="text-base leading-relaxed text-ink/75">
+            Jesteśmy butikową pracownią wedding planningu. Reżyserujemy śluby,
+            wesela i eventy, które wyglądają jak z okładki — a smakują jak dom.
+            Wy mówicie najważniejsze słowo. My piszemy cały scenariusz.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-6">
+            <a href="#kontakt" class="label border border-ink bg-ink px-6 py-3.5 text-ivory transition-colors hover:bg-blush hover:border-blush">Umów konsultację</a>
+            <a href="#program" class="label group inline-flex items-center gap-2 text-ink/70 hover:text-blush">
+              Program ceremonii <span class="transition-transform group-hover:translate-x-1">↓</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- marquee TAK · TAK · TAK -->
+    <div class="marquee mt-16 overflow-hidden border-y border-ink/10 py-3 md:mt-24" aria-hidden="true">
+      <div class="marquee-track gap-10 pr-10">
+        {Array.from({ length: 2 }).map(() => (
+          <div class="flex shrink-0 items-center gap-10">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span class={`font-serif text-3xl italic leading-none ${i % 2 ? "text-blush" : "text-ink/25"}`}>TAK<span class="text-gold">.</span></span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═════════ I. O PRACOWNI ═════════ -->
+    <section id="o-pracowni" class="relative mx-auto max-w-350 px-5 py-24 md:px-10 md:py-36">
+      <div class="grid gap-10 md:grid-cols-12">
+        <div class="reveal md:col-span-4">
+          <p class="label text-gold">I. — o pracowni</p>
+          <h2 class="mt-5 font-serif text-5xl font-medium leading-[1.02] md:text-6xl">
+            Dwie głowy,<br /><em class="italic text-blush">jedno</em> słowo
+          </h2>
+          <div class="mt-10 space-y-5 text-[0.95rem] leading-relaxed text-ink/75">
+            <p>
+              Pracownia TAK powstała w 2016 roku przy kuchennym stole na Mokotowie —
+              z przekonania, że wesele nie musi być ani cukierkowe, ani sztampowe.
+              Może być jak dobrze złożony magazyn: przemyślane, osobiste, piękne
+              w detalu.
+            </p>
+            <p>
+              Od tamtej pory powiedzieliśmy z naszymi parami <em class="font-serif italic text-ink">TAK</em> ponad
+              180 razy — w pałacach, stodołach, winnicach i na greckich klifach.
+              Każdy z tych dni był inny. I o to właśnie chodzi.
+            </p>
+          </div>
+          <div class="mt-10 grid grid-cols-3 gap-4 border-t border-ink/10 pt-6">
+            <div><p class="font-serif text-4xl font-medium">180+</p><p class="label mt-1 text-ink/50">ślubów</p></div>
+            <div><p class="font-serif text-4xl font-medium">9</p><p class="label mt-1 text-ink/50">lat pracy</p></div>
+            <div><p class="font-serif text-4xl font-medium">12</p><p class="label mt-1 text-ink/50">krajów</p></div>
+          </div>
+        </div>
+
+        <!-- kolumna zdjęć nachodzących na siebie -->
+        <div class="relative md:col-span-8 md:pl-10">
+          <div class="reveal photo relative z-0 ml-auto aspect-[4/3] w-full md:w-[78%]">
+            <img
+              src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80"
+              alt="Bukiet ślubny i papeteria na jasnym tle"
+              width="1200" height="900" loading="lazy"
+            />
+            <p class="label absolute bottom-3 left-4 bg-ivory/90 px-3 py-1.5 text-ink/70">fot. moodboard, sesja koncepcyjna</p>
+          </div>
+
+          <!-- dwa portrety zespołu, nachodzą na zdjęcie powyżej -->
+          <div class="relative z-10 mt-8 grid grid-cols-2 gap-6 md:-mt-24 md:w-[70%]">
+            <figure class="reveal">
+              <div class="photo aspect-[3/4]">
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80"
+                  alt="Julia Nawrocka — założycielka Pracowni TAK"
+                  width="800" height="1067" loading="lazy"
+                />
+              </div>
+              <figcaption class="mt-3">
+                <p class="font-serif text-2xl italic">Julia Nawrocka</p>
+                <p class="label mt-1 text-ink/50">założycielka · koncepcja i estetyka</p>
+              </figcaption>
+            </figure>
+            <figure class="reveal reveal-late md:mt-16">
+              <div class="photo aspect-[3/4]">
+                <img
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=80"
+                  alt="Helena Czerwińska — producentka Pracowni TAK"
+                  width="800" height="1067" loading="lazy"
+                />
+              </div>
+              <figcaption class="mt-3">
+                <p class="font-serif text-2xl italic">Helena Czerwińska</p>
+                <p class="label mt-1 text-ink/50">producentka · budżet i logistyka</p>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- ozdobny TAK. w tle -->
+          <p aria-hidden="true" class="pointer-events-none absolute -right-4 bottom-0 z-0 hidden select-none font-serif text-[10rem] italic leading-none text-blush/15 lg:block">TAK.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ II. PROGRAM CEREMONII (USŁUGI) ═════════ -->
+    <section id="program" class="bg-paper py-24 md:py-36">
+      <div class="mx-auto max-w-350 px-5 md:px-10">
+        <div class="reveal flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p class="label text-gold">II. — zakres usług</p>
+            <h2 class="mt-5 font-serif text-5xl font-medium leading-none md:text-7xl">Program <em class="italic text-blush">ceremonii</em></h2>
+          </div>
+          <p class="label max-w-xs text-ink/50">prosimy o&nbsp;powstanie — wchodzi zakres usług Pracowni</p>
+        </div>
+
+        <div class="mt-14">
+          {uslugi.map((u, i) => (
+            <article class={`reveal group grid gap-3 border-t border-ink/15 py-8 transition-colors hover:bg-ivory/70 md:grid-cols-12 md:items-baseline md:gap-6 md:py-10 ${i % 2 ? "md:pl-[6%]" : ""}`}>
+              <p class="font-serif text-2xl italic text-gold md:col-span-1">{u.nr}</p>
+              <h3 class="font-serif text-3xl font-medium leading-tight transition-all group-hover:italic group-hover:text-blush md:col-span-4 md:text-4xl">{u.title}</h3>
+              <p class="text-sm leading-relaxed text-ink/70 md:col-span-5">{u.desc}</p>
+              <p class="label text-sage md:col-span-2 md:text-right">{u.note}</p>
+            </article>
+          ))}
+          <div class="hairline"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ III. PROCES ═════════ -->
+    <section id="proces" class="mx-auto max-w-350 px-5 py-24 md:px-10 md:py-36">
+      <div class="grid gap-12 md:grid-cols-12">
+        <div class="reveal md:col-span-4">
+          <p class="label text-gold">III. — proces współpracy</p>
+          <h2 class="mt-5 font-serif text-5xl font-medium leading-[1.02] md:text-6xl">Od kawy<br />do <em class="italic text-blush">konfetti</em></h2>
+          <p class="mt-8 max-w-xs text-[0.95rem] leading-relaxed text-ink/75">
+            Pięć aktów. Zero improwizacji — poza tą zaplanowaną. Tak wygląda droga
+            od pierwszego „dzień dobry" do ostatniego tańca.
+          </p>
+          <div class="photo mt-12 hidden aspect-[3/4] w-4/5 md:block">
+            <img
+              src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=80"
+              alt="Bukiet ślubny z jasnych kwiatów"
+              width="900" height="1200" loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="md:col-span-7 md:col-start-6">
+          {proces.map((p, i) => (
+            <div class={`reveal relative border-l border-gold/40 pb-12 pl-8 last:pb-0 md:pl-12 ${i % 2 ? "md:ml-[14%]" : ""}`}>
+              <span class="absolute -left-[5px] top-2 block h-2.5 w-2.5 rounded-full border border-gold bg-ivory"></span>
+              <p aria-hidden="true" class="pointer-events-none absolute -top-3 right-0 select-none font-serif text-7xl italic leading-none text-blush/15 md:text-8xl">{p.nr}</p>
+              <p class="label text-gold">akt {p.nr}</p>
+              <h3 class="mt-2 font-serif text-3xl font-medium italic md:text-4xl">{p.title}</h3>
+              <p class="mt-3 max-w-md text-sm leading-relaxed text-ink/70">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ IV. PAKIETY ═════════ -->
+    <section id="pakiety" class="bg-ink py-24 text-ivory md:py-36">
+      <div class="mx-auto max-w-350 px-5 md:px-10">
+        <div class="reveal flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p class="label text-gold">IV. — pakiety</p>
+            <h2 class="mt-5 font-serif text-5xl font-medium leading-none md:text-7xl">Ile kosztuje <em class="italic text-blush">TAK?</em></h2>
+          </div>
+          <p class="label max-w-xs text-ivory/50">ceny orientacyjne — każdą współpracę wyceniamy indywidualnie po bezpłatnej konsultacji</p>
+        </div>
+
+        <div class="mt-16 grid gap-10 md:grid-cols-3 md:gap-8">
+          {pakiety.map((p) => (
+            <article class={`reveal flex flex-col ${p.featured ? "relative bg-ivory p-8 text-ink md:-mt-8 md:mb-8 md:p-10" : "border-t border-gold/50 pt-8"}`}>
+              {p.featured && <p class="label absolute -top-3.5 left-8 bg-blush px-3 py-1.5 text-ivory">najczęściej wybierany</p>}
+              <p class={`label ${p.featured ? "text-sage" : "text-ivory/50"}`}>{p.for}</p>
+              <h3 class="mt-4 font-serif text-4xl font-medium italic leading-tight">{p.name}</h3>
+              <p class={`mt-6 font-serif text-5xl font-semibold ${p.featured ? "text-blush" : "text-gold"}`}>{p.price}</p>
+              <ul class={`mt-8 flex-1 space-y-3 text-sm leading-relaxed ${p.featured ? "text-ink/75" : "text-ivory/70"}`}>
+                {p.items.map((it) => (
+                  <li class="flex gap-3"><span class="text-gold">—</span><span>{it}</span></li>
+                ))}
+              </ul>
+              <a
+                href="#kontakt"
+                class={`label mt-10 inline-block self-start px-6 py-3.5 transition-colors ${
+                  p.featured
+                    ? "bg-ink text-ivory hover:bg-blush"
+                    : "border border-ivory/40 text-ivory hover:border-blush hover:bg-blush hover:text-ivory"
+                }`}
+              >Zapytaj o termin</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ V. REALIZACJE ═════════ -->
+    <section id="realizacje" class="mx-auto max-w-350 px-5 py-24 md:px-10 md:py-36">
+      <div class="reveal flex flex-wrap items-end justify-between gap-6">
+        <div>
+          <p class="label text-gold">V. — realizacje</p>
+          <h2 class="mt-5 font-serif text-5xl font-medium leading-none md:text-7xl">Album <em class="italic text-blush">rodzinny</em></h2>
+        </div>
+        <p class="label max-w-xs text-ink/50">kilka kart z&nbsp;naszego albumu — miejsca, liczby, wspomnienia</p>
+      </div>
+
+      <div class="mt-14 grid grid-cols-2 gap-x-5 gap-y-12 md:grid-cols-12 md:gap-x-8 md:gap-y-0">
+        {realizacje.map((r, i) => {
+          const spans = [
+            "md:col-span-4 md:mt-0",
+            "md:col-span-5 md:col-start-6 md:mt-24",
+            "md:col-span-3 md:col-start-11 md:-mt-10 md:pt-0",
+            "md:col-span-4 md:col-start-2 md:-mt-10",
+            "md:col-span-5 md:col-start-7 md:mt-16",
+            "md:col-span-3 md:col-start-3 md:mt-20",
+          ];
+          return (
+            <figure class={`reveal ${spans[i]} ${i % 3 === 2 ? "col-span-2 md:col-span-3" : ""}`}>
+              <div class={`photo ${r.ratio}`}>
+                <img src={r.img} alt={r.alt} width="1200" height="1200" loading="lazy" />
+              </div>
+              <figcaption class="mt-3 flex items-baseline justify-between gap-3">
+                <p class="font-serif text-xl italic leading-tight">{r.place}</p>
+                <p class="label shrink-0 text-ink/45">{r.meta}</p>
+              </figcaption>
+            </figure>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- ═════════ VI. OPINIE ═════════ -->
+    <section id="opinie" class="bg-paper py-24 md:py-36">
+      <div class="mx-auto max-w-350 px-5 md:px-10">
+        <div class="reveal">
+          <p class="label text-gold">VI. — opinie par</p>
+          <h2 class="mt-5 font-serif text-5xl font-medium leading-none md:text-7xl">Oni już powiedzieli <em class="italic text-blush">TAK.</em></h2>
+        </div>
+
+        <div class="mt-16 grid gap-x-12 gap-y-14 md:grid-cols-2">
+          {opinie.map((o, i) => (
+            <blockquote class={`reveal border-l border-blush/60 pl-7 md:pl-9 ${i % 2 ? "md:mt-20" : ""}`}>
+              <p class="font-serif text-2xl font-medium italic leading-snug text-ink/90 md:text-[1.7rem]">„{o.quote}"</p>
+              <footer class="mt-5 flex items-baseline gap-4">
+                <span class="font-serif text-xl">{o.who}</span>
+                <span class="label text-ink/45">{o.where}</span>
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════ VII. FAQ ═════════ -->
+    <section id="faq" class="mx-auto max-w-350 px-5 py-24 md:px-10 md:py-36">
+      <div class="grid gap-10 md:grid-cols-12">
+        <div class="reveal md:col-span-4">
+          <p class="label text-gold">VII. — pytania</p>
+          <h2 class="mt-5 font-serif text-5xl font-medium leading-[1.02] md:text-6xl">Zanim <em class="italic text-blush">zapytacie</em></h2>
+        </div>
+        <div class="md:col-span-7 md:col-start-6">
+          {faq.map((f) => (
+            <details class="reveal group border-t border-ink/15 py-6 last:border-b">
+              <summary class="flex cursor-pointer list-none items-baseline justify-between gap-6 [&::-webkit-details-marker]:hidden">
+                <h3 class="font-serif text-2xl font-medium leading-snug transition-colors group-open:italic group-open:text-blush md:text-3xl">{f.q}</h3>
+                <span class="font-serif text-3xl italic text-gold transition-transform duration-300 group-open:rotate-45">+</span>
+              </summary>
+              <p class="mt-4 max-w-xl text-sm leading-relaxed text-ink/70">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- marquee przed kontaktem -->
+    <div class="marquee overflow-hidden border-y border-ink/10 py-3" aria-hidden="true">
+      <div class="marquee-track gap-10 pr-10">
+        {Array.from({ length: 2 }).map(() => (
+          <div class="flex shrink-0 items-center gap-10">
+            {Array.from({ length: 6 }).map(() => (
+              <span class="flex items-center gap-10">
+                <span class="font-serif text-3xl italic leading-none text-blush">powiedz TAK.</span>
+                <span class="label text-ink/40">napisz do nas</span>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ═════════ VIII. KONTAKT ═════════ -->
+    <section id="kontakt" class="mx-auto max-w-350 px-5 py-24 md:px-10 md:py-36">
+      <div class="grid gap-14 md:grid-cols-12">
+        <div class="reveal md:col-span-6">
+          <p class="label text-gold">VIII. — kontakt</p>
+          <h2 class="mt-5 font-serif font-medium leading-[0.95]">
+            <span class="block text-5xl md:text-7xl">Napisz</span>
+            <span class="block pl-10 text-6xl italic text-blush md:pl-20 md:text-8xl">do nas</span>
+          </h2>
+          <p class="mt-8 max-w-md text-[0.95rem] leading-relaxed text-ink/75">
+            Opowiedzcie nam o swoich planach — data (nawet orientacyjna), liczba
+            gości, marzenia. Odpowiadamy w ciągu 48 godzin i zapraszamy na
+            bezpłatną konsultację przy kawie.
+          </p>
+
+          <div class="mt-10 space-y-6">
+            <a href="mailto:dziendobry@pracowniatak.pl" class="group block">
+              <p class="label text-ink/45">e-mail</p>
+              <p class="mt-1 font-serif text-3xl italic transition-colors group-hover:text-blush md:text-4xl">dziendobry@pracowniatak.pl</p>
+            </a>
+            <a href="tel:+48224281640" class="group block">
+              <p class="label text-ink/45">telefon</p>
+              <p class="mt-1 font-serif text-3xl italic transition-colors group-hover:text-blush md:text-4xl">22 428 16 40</p>
+            </a>
+            <div class="grid gap-6 border-t border-ink/10 pt-6 sm:grid-cols-2">
+              <div>
+                <p class="label text-ink/45">pracownia</p>
+                <p class="mt-1 text-sm leading-relaxed text-ink/75">ul. Puławska 61 lok. 3<br />02-595 Warszawa (Mokotów)<br />spotkania po umówieniu</p>
+              </div>
+              <div>
+                <p class="label text-ink/45">obserwuj nas</p>
+                <p class="mt-1 text-sm leading-relaxed">
+                  <a href="#" class="underline decoration-blush/60 underline-offset-4 hover:text-blush">Instagram @pracownia.tak</a><br />
+                  <a href="#" class="underline decoration-blush/60 underline-offset-4 hover:text-blush">Pinterest / pracowniatak</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-late md:col-span-6">
+          <div class="relative h-full min-h-95 border border-ink/15 bg-paper p-3 md:ml-10">
+            <iframe
+              src="https://www.google.com/maps?q=Pu%C5%82awska%2061%2C%20Warszawa&output=embed"
+              title="Mapa dojazdu — Pracownia TAK, ul. Puławska 61, Warszawa"
+              class="h-full min-h-90 w-full grayscale-[0.85] sepia-[0.12]"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <p class="label absolute -top-3 left-6 bg-ivory px-3 py-1 text-ink/60">Mokotów, Puławska 61</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═════════ STOPKA ═════════ -->
+  <footer class="bg-ink pb-10 pt-20 text-ivory">
+    <div class="mx-auto max-w-350 px-5 md:px-10">
+      <p class="reveal font-serif font-medium italic leading-none text-blush" style="font-size:clamp(5rem,18vw,16rem)">TAK<span class="text-gold">.</span></p>
+      <div class="mt-12 flex flex-wrap items-end justify-between gap-8 border-t border-ivory/15 pt-8">
+        <div>
+          <p class="font-serif text-2xl">Pracownia <em class="italic text-blush">TAK.</em></p>
+          <p class="label mt-2 text-ivory/45">wedding planning &amp; eventy · Warszawa · od 2016</p>
+        </div>
+        <div class="label flex flex-wrap gap-x-7 gap-y-2 text-ivory/60">
+          {navLinks.map((l) => (
+            <a href={l.href} class="transition-colors hover:text-blush">{l.label}</a>
+          ))}
+        </div>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-ivory/10 pt-6">
+        <p class="label text-ivory/40">© 2026 Pracownia TAK — strona pokazowa, firma fikcyjna</p>
+        <p class="label text-ivory/40">
+          Przykładowa strona zrobiona przez
+          <a href="https://100strona.pl" target="_blank" rel="noopener" class="text-blush underline decoration-gold/60 underline-offset-4 transition-colors hover:text-ivory">3P sp. z o.o.</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* nav po scrollu — pułapka nr 2 ze SPEC */
+  #nav.scrolled {
+    background: color-mix(in srgb, var(--color-ivory) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+</style>
