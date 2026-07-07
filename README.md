@@ -1,7 +1,7 @@
 # Pracownia TAK — wedding planning & eventy
 
 Strona-wizytówka portfolio (fikcyjna marka) — butikowa pracownia wedding
-planningu z Warszawy (Mokotów). Projekt pokazowy dla stronainternetowa.biz /
+planningu z Warszawy (Mokotów). Projekt pokazowy dla 100strona.pl /
 100strona.pl.
 
 ## Styl
